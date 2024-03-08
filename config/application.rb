@@ -1,8 +1,8 @@
 require_relative "boot"
 
-#require "rails/all"
+# require "rails/all"
 
-require "rails"
+require 'rails'
 
 # require "active_record/railtie" rescue LoadError
 # require "active_storage/engine" rescue LoadError
