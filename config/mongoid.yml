@@ -183,3 +183,13 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      database: blog_production
+      hosts:
+        - <%= ENV['MONGODB_HOST'] || 'localhost' %>:<%= ENV['MONGODB_PORT'] || '27017' %>
+      options:
+        user: <%= ENV['MONGODB_USERNAME'] %>
+        password: <%= ENV['MONGODB_PASSWORD'] %>
