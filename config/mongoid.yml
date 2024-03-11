@@ -19,5 +19,5 @@ test:
 production:
   clients:
     default:
-      uri: "mongodb+srv://amc92v:123456@cluster0.yjptpuq.mongodb.net/blog_development?retryWrites=true&w=majority&appName=Cluster0"
+      uri: <%= ENV['MONGODB_URI'] %>
       
