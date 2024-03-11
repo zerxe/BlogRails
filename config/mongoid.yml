@@ -188,8 +188,5 @@ production:
   clients:
     default:
       database: blog_production
-      hosts:
-        - <%= ENV['MONGODB_HOST'] || 'localhost' %>:<%= ENV['MONGODB_PORT'] || '27017' %>
-      options:
-        user: <%= ENV['MONGODB_USERNAME'] %>
-        password: <%= ENV['MONGODB_PASSWORD'] %>
+      uri: "mongodb+srv://amc92v:aYt96MmcZzNthXdy@cluster0.yjptpuq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      
