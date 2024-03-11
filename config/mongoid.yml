@@ -187,6 +187,5 @@ test:
 production:
   clients:
     default:
-      database: blog_production
       uri: "mongodb+srv://amc92v:aYt96MmcZzNthXdy@cluster0.yjptpuq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       
