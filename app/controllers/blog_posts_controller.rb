@@ -3,12 +3,10 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, except: %i[index new create] # only: [:show, :edit, :update, :destroy]
 
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
   end
 
   def show
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
   end
 
   def new
@@ -17,6 +15,7 @@ class BlogPostsController < ApplicationController
 
   def create
     @blog_post = BlogPost.new(blog_post_params)
+    @blog_post.published_at = combine_datetime_from_params(params[:blog_post], :published_at)
     if @blog_post.save
       redirect_to @blog_post
     else
@@ -47,8 +46,16 @@ class BlogPostsController < ApplicationController
   end
 
   def set_blog_post
-    @blog_post = BlogPost.find(params[:id])
+    @blog_post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  def combine_datetime_from_params(params, prefix)
+    if params[:"#{prefix}(1i)"].blank? || params[:"#{prefix}(2i)"].blank? || params[:"#{prefix}(3i)"].blank? || params[:"#{prefix}(4i)"].blank? || params[:"#{prefix}(5i)"].blank?
+      nil
+    else
+      DateTime.new(params[:"#{prefix}(1i)"].to_i, params[:"#{prefix}(2i)"].to_i, params[:"#{prefix}(3i)"].to_i, params[:"#{prefix}(4i)"].to_i, params[:"#{prefix}(5i)"].to_i)
+    end
   end
 end
