@@ -58,6 +58,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'foreman', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -77,3 +78,7 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "~> 2.3"
 
 gem "factory_bot_rails", "~> 6.4"
+
+gem "actiontext", "~> 7.1"
+
+gem "tinymce-rails", "~> 6.8"
