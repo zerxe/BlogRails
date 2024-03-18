@@ -9,7 +9,7 @@
     <% elsif blog_post.scheduled?  %>
       <div class="p-2 rounded bg-green-100 text-green-900">Scheduled</div>
     <% end %>
-    <%= blog_post.body %>
+    <%= blog_post.body.html_safe %>
   </div>
 
 <% end %>
