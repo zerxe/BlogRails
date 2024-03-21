@@ -82,3 +82,16 @@ gem "factory_bot_rails", "~> 6.4"
 gem "actiontext", "~> 7.1"
 
 gem "tinymce-rails", "~> 6.8"
+
+gem "aws-sdk-s3", require: false
+
+gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
+
+gem 'carrierwave', '~> 2.0'
+
+gem 'carrierwave-mongoid', '~> 1.4'
+
+gem 'carrierwave-aws', '~> 1.6'
+
+gem 'fog', '~> 2.3'
+

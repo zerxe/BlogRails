@@ -1,6 +1,7 @@
 class BlogPostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_blog_post, except: %i[index new create] # only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:upload_image]
+  before_action :set_blog_post, except: %i[index new create upload_image] # only: [:show, :edit, :update, :destroy]
 
   def index
     @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
@@ -39,15 +40,21 @@ class BlogPostsController < ApplicationController
     redirect_to root_path
   end
 
+  def upload_image
+    uploader = ImageUploader.new
+    uploader.store!(params[:file])
+    render json: { location: uploader.url }
+  end
+
   private
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :body)
+    params.require(:blog_post).permit(:title, :body, :image)
   end
 
   def set_blog_post
     @blog_post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
+  rescue Mongoid::Errors::DocumentNotFound
     redirect_to root_path
   end
 

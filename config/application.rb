@@ -5,7 +5,7 @@ require_relative "boot"
 require 'rails'
 
 # require "active_record/railtie" rescue LoadError
-# require "active_storage/engine" rescue LoadError
+#require "active_storage/engine" rescue LoadError
 require "action_controller/railtie" rescue LoadError
 require "action_view/railtie" rescue LoadError
 require "action_mailer/railtie" rescue LoadError
@@ -23,6 +23,8 @@ module Blog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
+    config.action_controller.default_protect_from_forgery = true
+    config.action_view.embed_authenticity_token_in_remote_forms = true
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

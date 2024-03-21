@@ -4,7 +4,7 @@ class BlogPost
   field :title, :type => String
   field :body, :type => String
   field :published_at, :type => DateTime
-
+  mount_uploader :image, ImageUploader
 
   validates :title, presence: true
   validates :body, presence: true

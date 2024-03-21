@@ -15,15 +15,12 @@
   <div>
     <%= form.label :body %>
     <%= form.text_area :body, :class => "tinymce" %>
-
   </div>
 
   <div>
     <%= form.label :published_at %><br>
     <%= form.datetime_select :published_at, include_blank: true %>
-
   </div>
-
-
+  
   <%= form.button %>
 <% end %>
